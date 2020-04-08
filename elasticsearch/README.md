@@ -1,0 +1,1 @@
+# KubernetesでElasticsearchを動かす
