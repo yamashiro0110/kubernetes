@@ -1,0 +1,24 @@
+---
+# pvcでvolumeをmountする
+apiVersion: v1
+kind: Pod
+metadata:
+  name: dynamic-provisioning-test-pod
+  labels:
+    name: dynamic-provisioning-test-pod
+spec:
+  containers:
+    - name: dynamic-provisioning-test-pod
+      image: alpine
+      resources:
+        limits:
+          memory: "64Mi"
+          cpu: "100m"
+      command: ["tail", "-f", "/dev/null"]
+      volumeMounts:
+        - name: dynamic-provisioning-test-volume
+          mountPath: /data/test
+  volumes:
+    - name: dynamic-provisioning-test-volume
+      persistentVolumeClaim:
+        claimName: dynamic-provisioning-test-pvc

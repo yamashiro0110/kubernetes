@@ -1,0 +1,14 @@
+---
+# defaultのStorageClassを要求するpvc, storageClassNameを指定しない
+apiVersion: v1
+kind: PersistentVolumeClaim
+metadata:
+  name: dynamic-provisioning-test-pvc
+  labels:
+    name: dynamic-provisioning-test-pvc
+spec:
+  accessModes:
+    - ReadWriteOnce
+  resources:
+    requests:
+      storage: 3Gi

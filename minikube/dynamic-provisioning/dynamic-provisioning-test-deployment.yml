@@ -1,0 +1,33 @@
+---
+# PersistentVolumeClaimを指定してDeploymentを作成する
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: dynamic-provisioning-test-deployment
+  labels:
+    app: dynamic-provisioning-test-deployment
+spec:
+  replicas: 3
+  selector:
+    matchLabels:
+      app: dynamic-provisioning-test-deployment
+  template:
+    metadata:
+      labels:
+        app: dynamic-provisioning-test-deployment
+    spec:
+      containers:
+        - name: dynamic-provisioning-test-deployment
+          image: alpine
+          resources:
+            limits:
+              memory: "64Mi"
+              cpu: "100m"
+          command: ["tail", "-f", "/dev/null"]
+          volumeMounts:
+            - name: dynamic-provisioning-test-deployment-volume
+              mountPath: /data/test/deloyment
+      volumes:
+        - name: dynamic-provisioning-test-deployment-volume
+          persistentVolumeClaim:
+            claimName: dynamic-provisioning-test-pvc
