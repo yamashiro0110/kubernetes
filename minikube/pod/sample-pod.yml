@@ -1,0 +1,16 @@
+---
+apiVersion: v1
+kind: Pod
+metadata:
+  name: sample-pod
+  labels:
+    name: sample-pod
+spec:
+  containers:
+    - name: sample-pod
+      image: yauritux/busybox-curl:latest
+      resources:
+        limits:
+          memory: "128Mi"
+          cpu: "500m"
+      command: ["tail", "-f", "/dev/null"] # コンテナが停止しないようにする
