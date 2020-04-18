@@ -9,3 +9,4 @@ Minikubeやってみた。
 
 - [Dynamic Provisioning](dynamic-provisioning/)
 - [Minikube Service](service/)
+- [Elasticsearch](elasticsearch/)
